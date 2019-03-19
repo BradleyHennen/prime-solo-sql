@@ -28,12 +28,13 @@ DELETE FROM "accounts" WHERE "city" = 'miami' OR "city" = 'pheonix' AND "transac
 --STRETCH GOALS
 
 -- Anthony moved to Santa Fe.
-
+UPDATE "accounts" SET "city" = 'santa fe' WHERE "username" = 'anthony';
 
 -- Grace closed her account.
-
+DELETE FROM "accounts" WHERE "username" = 'grace';
 
 -- Travis made a withdrawl of $20,000. What's their new balance? NOTE: Research RETURNING
-
+UPDATE "accounts" SET "account_balance" = "account_balance" - 20000 WHERE "username" = 'travis' RETURNING  "username", "account_balance" AS "new_account_balance";
 
 -- The Bank needs to track last names. NOTE: Research ALTER TABLE https://www.postgresql.org/docs/10/static/sql-altertable.html
+ALTER TABLE "accounts" ADD COLUMN "last_name" varChar(40);
